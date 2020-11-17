@@ -1,0 +1,18 @@
+apiVersion: v1
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: python-helloworld 
+  namespace: argocd
+spec:
+  destination:
+    namespace: default
+    server: https://kubernetes.default.svc
+  project: default
+  source:
+    helm:
+      valueFiles:
+      - values.yaml
+    path: helm-python-helloworld
+    repoURL: https://github.com/kgamanji/argocd-demo
+    targetRevision: HEAD
